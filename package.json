@@ -2,9 +2,10 @@
   "name": "freecodecamp-multiplayer-game",
   "version": "1.0.0",
   "description": "A multiplayer game built as part of the freeCodeCamp Information Security Certification",
-  "main": "server.js",
+  "main": "server.mjs",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.mjs",
+    "dev": "nodemon server.mjs",
     "test": "PORT=3005 mocha --require @babel/register --recursive --exit --ui tdd tests/"
   },
   "dependencies": {
@@ -20,9 +21,13 @@
     "helmet": "^3.21.3",
     "jsdom": "^16.2.0",
     "mocha": "^10.1.0",
+    "morgan": "^1.10.0",
+    "nocache": "^3.0.4",
     "nodemon": "^2.0.2",
-    "socket.io": "^2.3.0",
-    "socket.io-client": "^2.3.0"
+    "socket.io": "^4.5.3",
+    "socket.io-client": "^4.5.3",
+    "uuid": "^9.0.0",
+    "winston": "^3.8.2"
   },
   "license": "MIT"
 }

@@ -12,7 +12,7 @@ var testDir = './tests';
 // Add each .js file to the mocha instance
 fs.readdirSync(testDir)
   .filter(function (file) {
-    // Only keep the .js files
+    // Only keep the .js filesOutgoingMessage.prototype._headers is deprecated
     return file.substr(-3) === '.js';
   })
   .forEach(function (file) {
