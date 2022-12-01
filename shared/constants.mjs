@@ -1,0 +1,12 @@
+export const CANVAS_WIDTH = 600;
+export const CANVAS_HEIGHT = 600;
+export const BG_COLOR = 'black';
+export const PLAYER_HEIGHT = 50;
+export const PLAYER_WIDTH = 50;
+export const COLLECTIBLE_HEIGHT = 50;
+export const COLLECTIBLE_WIDTH = 50;
+export const FRAME_RATE = 60;
+export const PLAYER_MAX_Y = CANVAS_HEIGHT - PLAYER_HEIGHT;
+export const PLAYER_MAX_X = CANVAS_WIDTH - PLAYER_WIDTH;
+export const COLLECTIBLE_MAX_Y = CANVAS_HEIGHT - COLLECTIBLE_HEIGHT;
+export const COLLECTIBLE_MAX_X = CANVAS_WIDTH - COLLECTIBLE_WIDTH;

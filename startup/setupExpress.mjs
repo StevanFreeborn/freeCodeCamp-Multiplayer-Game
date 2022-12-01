@@ -8,7 +8,7 @@ export default function () {
   app.disable('x-powered-by');
 
   app.use('/public', express.static(process.cwd() + '/public'));
-  app.use('/assets', express.static(process.cwd() + '/assets'));
+  app.use('/shared', express.static(process.cwd() + '/shared'));
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));

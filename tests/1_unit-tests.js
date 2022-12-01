@@ -1,5 +1,5 @@
-import Player from '../public/Player.mjs';
-import Collectible from '../public/Collectible.mjs';
+import Player from '../game/player.mjs';
+import Collectible from '../game/collectible.mjs';
 const chai = require('chai');
 const assert = chai.assert;
 const { JSDOM } = require('jsdom');
