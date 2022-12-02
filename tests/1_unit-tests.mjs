@@ -1,8 +1,8 @@
 import Player from '../game/player.mjs';
 import Collectible from '../game/collectible.mjs';
-const chai = require('chai');
+import chai from 'chai';
 const assert = chai.assert;
-const { JSDOM } = require('jsdom');
+import { JSDOM } from 'jsdom';
 
 suite('Unit Tests', () => {
   suiteSetup(() => {

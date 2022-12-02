@@ -13,7 +13,7 @@ var testDir = './tests';
 fs.readdirSync(testDir)
   .filter(function (file) {
     // Only keep the .js filesOutgoingMessage.prototype._headers is deprecated
-    return file.substr(-3) === '.js';
+    return file.substr(-4) === '.mjs';
   })
   .forEach(function (file) {
     mocha.addFile(path.join(testDir, file));
