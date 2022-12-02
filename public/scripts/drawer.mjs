@@ -11,8 +11,9 @@ export default class Drawer {
       './public/characters/other-player.png'
     );
 
-    const playerArt =
-      player.id == mainPlayerId ? mainPlayerArt : otherPlayerArt;
+    const playerArt = player.id == mainPlayerId 
+    ? mainPlayerArt 
+    : otherPlayerArt;
 
     context.drawImage(
       playerArt,

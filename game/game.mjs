@@ -8,6 +8,7 @@ import {
   PLAYER_MAX_Y,
   PLAYER_WIDTH,
 } from '../shared/constants.mjs';
+import Collectible from './collectible.mjs';
 
 export default class Game {
   constructor() {
@@ -118,5 +119,22 @@ export default class Game {
 
   rankPlayers = () => {
     this.players.sort((a, b) => b.score - a.score);
+  };
+
+  runLoop = () => {
+    this.movePlayers();
+    const gotCollectibleResult = this.hasPlayerGotCollectible();
+    
+    if (gotCollectibleResult.status == true) {
+      this.updatePlayerScores(
+        gotCollectibleResult.playerId,
+        this.collectible.value
+      );
+
+      this.rankPlayers();
+
+      const newCollectiblePostion = this.generateRandomCollectiblePosition();
+      this.collectible = new Collectible(newCollectiblePostion);
+    }
   };
 }

@@ -4,5 +4,6 @@ export default class SocketEvents {
     static gameState = 'gameState';
     static connect = 'connect';
     static keyUp = 'keyUp';
-    static keyDown = 'keyDown'
+    static keyDown = 'keyDown';
+    static disconnect = 'disconnect';
 }

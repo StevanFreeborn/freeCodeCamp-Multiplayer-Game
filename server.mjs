@@ -20,7 +20,6 @@ loggingMiddleware(app);
 notFoundMiddleware(app);
 
 app = setupSocketIO(app);
-
 startApp(app);
 
 export default app;
