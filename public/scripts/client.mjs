@@ -23,7 +23,7 @@ socket.on(SocketEvents.connect, () =>
   )
 );
 
-socket.on(SocketEvents.serverError, gameState =>
+socket.on(SocketEvents.gameState, gameState =>
   ClientEventErrorHandler.handle(socket, () =>
     ClientEventHandler.handleGameState(clientState, gameState)
   )
