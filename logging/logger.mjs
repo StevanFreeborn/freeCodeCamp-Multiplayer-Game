@@ -20,6 +20,7 @@ const createLogger = () => {
 
   switch (process.env.NODE_ENV) {
     case 'production':
+      logger.add(consoleTransport());
       break;
     case 'test':
       break;
