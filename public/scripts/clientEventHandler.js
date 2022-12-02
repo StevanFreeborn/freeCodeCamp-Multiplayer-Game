@@ -43,4 +43,8 @@ export default class ClientEventHandler {
     clientState.playerScore.innerText = playerScore;
     clientState.playerRank.innerText = playerRank;
   };
+
+  static handleServerError = data => {
+    alert(data.message);
+  }
 }

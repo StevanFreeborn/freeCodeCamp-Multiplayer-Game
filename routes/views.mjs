@@ -1,5 +1,6 @@
 import PublicController from "../controllers/publicController.mjs";
+import ErrorHandler from "../errors/errorHandler.mjs";
 
 export default function (app) {
-  app.get('/', PublicController.index);
+  app.get('/', ErrorHandler.handleViewError(PublicController.index));
 };

@@ -4,6 +4,7 @@ import {
   CANVAS_WIDTH,
 } from '../../shared/constants.mjs';
 import SocketEvents from '../../shared/socketEvents.mjs';
+import ClientEventErrorHandler from './clientEventErrorHandler.js';
 import ClientEventHandler from './clientEventHandler.js';
 
 const socket = io();
@@ -17,14 +18,24 @@ const clientState = {
 };
 
 socket.on(SocketEvents.connect, () =>
-  ClientEventHandler.handleConnect(clientState, socket)
+  ClientEventErrorHandler.handle(socket, () =>
+    ClientEventHandler.handleConnect(clientState, socket)
+  )
 );
 
-socket.on('gameState', gameState =>
-  ClientEventHandler.handleGameState(clientState, gameState)
+socket.on(SocketEvents.serverError, gameState =>
+  ClientEventErrorHandler.handle(socket, () =>
+    ClientEventHandler.handleGameState(clientState, gameState)
+  )
 );
 
-socket.emit('joinGame');
+socket.on(SocketEvents.serverError, data =>
+  ClientEventErrorHandler.handle(socket, () =>
+    ClientEventHandler.handleServerError(data)
+  )
+);
+
+socket.emit(SocketEvents.joinGame);
 
 clientState.canvas = document.getElementById('game-window');
 clientState.canvas.height = CANVAS_HEIGHT;
@@ -40,8 +51,13 @@ clientState.context.fillRect(
 );
 
 document.addEventListener('keydown', e =>
-  ClientEventHandler.handleKeyDown(e, socket)
+  ClientEventErrorHandler.handle(socket, () =>
+    ClientEventHandler.handleKeyDown(e, socket)
+  )
 );
+
 document.addEventListener('keyup', e =>
-  ClientEventHandler.handleKeyUp(e, socket)
+  ClientEventErrorHandler.handle(socket, () =>
+    ClientEventHandler.handleKeyUp(e, socket)
+  )
 );

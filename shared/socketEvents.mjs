@@ -6,4 +6,6 @@ export default class SocketEvents {
     static keyUp = 'keyUp';
     static keyDown = 'keyDown';
     static disconnect = 'disconnect';
+    static serverError = 'serverError';
+    static clientError = 'clientError';
 }

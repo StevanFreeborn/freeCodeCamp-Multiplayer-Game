@@ -3,6 +3,7 @@ import { createServer } from 'http';
 import SocketEvents from '../shared/socketEvents.mjs';
 import ServerEventHandler from '../game/serverEventHandler.mjs';
 import Game from '../game/game.mjs';
+import ErrorHandler from '../errors/errorHandler.mjs';
 
 export default function (app) {
   const server = createServer(app);
@@ -10,21 +11,35 @@ export default function (app) {
   let gameState = new Game();
 
   io.on(SocketEvents.connection, socket => {
-    socket.on(SocketEvents.joinGame, () => {
-      ServerEventHandler.handleJoinGame(io, socket, gameState);
-    });
+    socket.on(SocketEvents.joinGame, () =>
+      ErrorHandler.handleSocketError(socket, () =>
+        ServerEventHandler.handleJoinGame(io, socket, gameState)
+      )
+    );
 
-    socket.on(SocketEvents.keyDown, key => {
-      ServerEventHandler.handleKeyDown(socket, key, gameState);
-    });
+    socket.on(SocketEvents.keyDown, key =>
+      ErrorHandler.handleSocketError(socket, () =>
+        ServerEventHandler.handleKeyDown(socket, key, gameState)
+      )
+    );
 
-    socket.on(SocketEvents.keyUp, key => {
-      ServerEventHandler.handleKeyUp(socket, key, gameState);
-    });
+    socket.on(SocketEvents.keyUp, key =>
+      ErrorHandler.handleSocketError(socket, () =>
+        ServerEventHandler.handleKeyUp(socket, key, gameState)
+      )
+    );
 
-    socket.on(SocketEvents.disconnect, () => {
-      ServerEventHandler.handleDisconnect(socket, gameState);
-    });
+    socket.on(SocketEvents.disconnect, () =>
+      ErrorHandler.handleSocketError(socket, () =>
+        ServerEventHandler.handleDisconnect(socket, gameState)
+      )
+    );
+
+    socket.on(SocketEvents.clientError, error =>
+      ErrorHandler.handleSocketError(socket, () =>
+        ServerEventHandler.handleClientError(socket, clientToGameMap, error)
+      )
+    );
   });
 
   return server;
