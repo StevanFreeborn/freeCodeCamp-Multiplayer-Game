@@ -5,7 +5,8 @@
   "main": "server.mjs",
   "scripts": {
     "start": "node server.mjs",
-    "dev": "nodemon server.mjs",
+    "dev": "NODE_ENV=development nodemon server.mjs",
+    "dev-windows": "set NODE_ENV=development&& nodemon server.mjs",
     "test": "PORT=3005 mocha --require @babel/register --recursive --exit --ui tdd tests/",
     "test-windows": "set PORT=3005&& mocha --require @babel/register --recursive --exit --ui tdd tests/"
   },
